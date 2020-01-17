@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Input, FormBtn, TextArea } from "../components/Form";
 import API from "../utils/API";
 import './pages.css';
+import Cookies from 'js-cookie';
 
 class Create extends Component {
 
@@ -41,10 +42,18 @@ class Create extends Component {
         }
         
     };
+
+    componentDidMount = () => {
+        this.getUserData()   
+    }
+    getUserData = () => {
+        alert(Cookies.get('loggedIn'))
+    }
     
     clearForm = () => {
         window.location.reload()
     }
+
 
     render() {
         return (
