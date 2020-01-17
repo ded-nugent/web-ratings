@@ -9,6 +9,7 @@ const websiteSchema = new Schema({
     category: { type: String, required: true },
     date: { type: Date, default: Date.now },
     rating: 0,
+    visits: 0,
     comments: [ 
         {
             user: { type: String, required: true },

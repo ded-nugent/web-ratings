@@ -2,31 +2,43 @@ h4 {
     font-family: 'Lobster', cursive;
 }
 
+.center {
+    justify-content: center;
+}
+
+.l-box {
+    padding: 1em;
+}
+
+
 #loginForm {
-    margin: 30px 0px 5px 350px;
-    background-color: wheat;
+    background-color: #ffffcc;
     padding: 15px;
     border: 3px solid black;
     height: 275px;
     width: 400px;
 }
 
+#register {
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
+}
+
 #userForm {
-    margin: 30px 0px 5px 350px;
-    background-color: wheat;
+    background-color: #ffffcc;
     padding: 15px;
     border: 3px solid black;
     height: 455px;
     width: 400px;
+    letter-spacing: normal;
 }
 
 #createForm {
-    margin: 30px 0px 5px 200px;
-    background-color: wheat;
+    background-color: #ffffcc;
     padding: 15px;
     border: 3px solid black;
     height: 755px;
-    width: 400px;
+    width: auto;
 }
 
 #categoryCreate {
@@ -36,22 +48,11 @@ h4 {
 }
 
 #siteView {
-    margin: 30px 0px 5px 300px;
-    background-color: wheat;
+    background-color: #ffffcc;
     padding: 15px;
     border: 3px solid black;
-    height: 755px;
-    width: 600px;
-}
-
-.userSites {
-    margin: 0px 0px 5px 100px;
-}
-
-#register {
-    margin: 100px 0px 5px 330px;
-    font-family: 'Lobster', cursive;
-    font-size: 25px;
+    height: auto;
+    width: auto;
 }
 
 #account {
@@ -64,79 +65,66 @@ h4 {
     font-size: 30px;
 }
 
-.l-box {
-    padding: 1em;
+.filter-item {
+    margin: 25px 20px 20px 10px;
 }
 
-.filter-item {
-    margin: 10px 10px 10px 10px;
-}
+/* styling for Welcome page */
 
 .splash-container {
-    background:lightblue;
-    z-index: -1;
+    background: #ffffcc;
+    margin-left: auto;
+    margin-right: auto;
     overflow: hidden;
-    width: 100%;
-    height: 85%;
-    top: 0;
-    left: 0;
-    position: absolute !important;
+    width: 600px;
+    height: auto;
+    border: 3px solid black;
+    
 }
 
 .splash {
     width: 50%;
     height: auto;
-    margin-top: 150px;
-    margin-bottom: 150px;
     margin-left: auto;
     margin-right: auto;
-    position: absolute;
-    top: 10px; left: 0; bottom: 0; right: 0;
     text-align: center;
     text-transform: uppercase;
-    border: 3px solid black;
-    background-color: wheat;
+    background-color: #ffffcc;
 }
 
 .splash-head {
-    font-size: 20px;
     font-weight: bold;
     color:black;
-    padding: 1em 1.6em;
     font-weight: 100;
-    border-radius: 5px;
-    line-height: 1em;
     font-family: 'Poppins', sans-serif;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .splash-subhead {
     color: black;
     letter-spacing: 0.05em;
-    opacity: 0.8;
     font-family: 'Poppins', sans-serif;
 }
 
 .pure-button {
-    background-color:lightgrey;
+    background-color:#ff944d;
     color: black;
     border-radius: 5px;
 }
 
 a.pure-button-primary {
-    background: lightgrey;
+    background: #ff944d;
     color: black;
     border-radius: 5px;
     font-size: 120%;
 }
 
 .content-wrapper {
-    position: absolute;
-    top: 70%;
-    width: 73%;
+    width: auto;
     z-index: 2;
     height: auto;
-    background: wheat;
+    background: #ffffcc;
+    margin-top: 50px;
     margin-bottom: 40px;
     border: 3px solid black;
     text-align: center;
@@ -170,26 +158,77 @@ a.pure-button-primary {
         margin-right: 7px;
     }
 
+/* styling for home table */
+
 table {
     margin-left:auto; 
     margin-right:auto;
 }
+
+.pure-table thead {
+    border: 3px solid black;
+    background: #ff944d;
+}
+
+tr:nth-of-type(even) { 
+	background: #ff944d; 
+	}
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+    table {
+        width: 100%;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        padding-left: 50%;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        content: attr(data-column);
+        color: #000;
+        font-weight: bold;
+    }
+}
+
 
     /* CSS for Website page */
 
 #webTitle {
     text-align: center;
     font-family: 'Lobster', cursive;
-    font-size: 50PX;
+    font-size: 70PX;
     text-decoration: underline;
 }
 
 .webInfo {
-    background-color: wheat;
+    background-color: #ffffcc;
     border: 3px solid black;
     padding: 15px;
     margin: 15px;
-    height: 420px;
+    height: auto;
 }
 
 .webInfo-title {

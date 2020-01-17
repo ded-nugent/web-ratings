@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Input, FormBtn } from "../components/Form";
 import Container from "../components/Container/Index";
 import './pages.css';
+import Cookies from 'js-cookie';
+
 
 class Login extends Component {
 
@@ -17,14 +19,17 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+
+  
     };
 
     handleChange(event) {
         this.setState({
-            name: event.target.value,
-            
+            name: event.target.value,        
             
         });
+        
     };
 
     handlePassword(event) {
@@ -34,26 +39,41 @@ class Login extends Component {
     }
 
     handleSubmit(event){
-        alert(this.state.name)
-        alert(this.state.password)
+
+        //.GET password from database for this.state.name
+        //check that this.state.password === password in database
         event.preventDefault();
         
+        Cookies.set('loggedIn',this.state.name)
         
     };
-  
+    componentDidMount = () => {
+        this.getUserData()   
+    }
+    getUserData = () => {
+        alert(Cookies.get('loggedIn'))
+    }
+
+   
 
     render() {
 
         return (
+            
             <Container>
-                <form id="loginForm" onSubmit ={this.handleSubmit}>
-                    <h4>User Name</h4>
-                    <Input type ='text' value ={this.state.name} onChange={this.handleChange}></Input>
-                    <h4>Password</h4>
-                    <Input type = 'text' value ={this.state.password} onChange ={this.handlePassword}></Input>
-                    <FormBtn>Submit</FormBtn>
-                </form>
-                <div id="register">Don't have an account? <a id="account" href="/newUser">Click Here</a> to create one.</div>              
+                <div className="pure-g center">
+                    <form id="loginForm" className="l-box pure-u-1 pure-u-md-1-1 pure-u-lg-1-1" onSubmit ={this.handleSubmit}>
+                        <h4>User Name</h4>
+                        <Input type ='text' value ={this.state.name} onChange={this.handleChange}></Input>
+                        <h4>Password</h4>
+                        <Input type = 'text' value ={this.state.password} onChange ={this.handlePassword}></Input>
+                        <FormBtn>Submit</FormBtn>
+                    </form>
+                <div className="pure-g center">
+                    <div className="l-box pure-u-1 pure-u-md-1-1 pure-u-lg-1-1" id="register">
+                        <a id="account" href="/newUser">Click Here</a> to create account.</div>              
+                    </div>
+                </div>
             </Container>   
             
         );

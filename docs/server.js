@@ -24,6 +24,7 @@ db.once("open", () => {
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/websiteDB");
+  
 
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
