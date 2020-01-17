@@ -4,6 +4,9 @@ import Filter from "../components/Filter/Index"
 import Container from "../components/Container/Index";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
+import Cookies from "js-cookie";
+// import { response } from "express";
+
 
 class Home extends Component {
     state = {
@@ -18,6 +21,8 @@ class Home extends Component {
     
     componentDidMount = () => {
         this.loadWebsites();
+        this.selectedBoxes = new Set();
+        this.getUserData()
     }
 
     handleInputChange = event => {
@@ -52,6 +57,10 @@ class Home extends Component {
         )
         .catch(err => console.log(err));
     };
+    //retrieve username from cookies
+    getUserData = () => {
+        alert(Cookies.get('loggedIn'))
+    }
 
 
     
