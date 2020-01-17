@@ -39,8 +39,9 @@ class Login extends Component {
     }
 
     handleSubmit(event){
-        alert(this.state.name)
-        alert(this.state.password)
+
+        //.GET password from database for this.state.name
+        //check that this.state.password === password in database
         event.preventDefault();
         
         Cookies.set('loggedIn',this.state.name)
