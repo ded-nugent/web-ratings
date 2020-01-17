@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   // Gets all websites
   getWebsites: function() {
-    return axios.get("api/websites");
+    return axios.get("/api/websites/");
   },
   // Gets the website with the given id
   getWebsite: function(id) {
@@ -19,7 +19,11 @@ export default {
   },
 
   updateWebsite: function(id, websiteData) {
-    return axios.put("/api/websites/" + id, websiteData);
-  }
+    return axios.put("/api/websites/" + id, websiteData.website);
+  },
+
+  findWebsite: function(title) {
+    return axios.get("/api/websites/" + title);
+  },
 
 };

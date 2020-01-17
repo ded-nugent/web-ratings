@@ -3,16 +3,7 @@ import Module from "../components/module/Index"
 import Filter from "../components/Filter/Index"
 import Container from "../components/Container/Index";
 import { Link } from "react-router-dom";
-import Checkbox from "../components/Checkbox"
 import API from "../utils/API";
-// import { response } from "express";
-
-// array of filter names//
-const items = [
-    'Popular',
-    'Highest Rating',
-    'Newest'
-];
 
 class Home extends Component {
     state = {
@@ -20,13 +11,13 @@ class Home extends Component {
         filteredSites: [],
         options: "",
         category: "",
+        web_id: "",
     };
 
     
     
     componentDidMount = () => {
         this.loadWebsites();
-        this.selectedBoxes = new Set();
     }
 
     handleInputChange = event => {
@@ -45,37 +36,24 @@ class Home extends Component {
 
     //retrieve website data from API
     loadWebsites = () => {
+        let allSites = []
         API.getWebsites()
-        .then(res =>
-            this.setState({ websites: res.data, filteredSites: res.data })
+        .then(res => {
+            for (let i= 0; i < res.data.length; i++){
+                for (let j= 0; j < res.data.length; j++) {
+                    if (res.data[i].websites[j] !== undefined){
+                    allSites.push(res.data[i].websites[j])
+                    }
+                }
+            }
+            this.setState({ websites: allSites, filteredSites: allSites })
+        }
+        
         )
         .catch(err => console.log(err));
-        
     };
 
-    //for checking and unchecking boxes 
-    toggleBox = label => {
-        if (this.selectedBoxes.has(label)) {
-            this.selectedBoxes.delete(label);
-        } else {
-            this.selectedBoxes.add(label);
-            this.setState({ checkbox: label })
-        }
-    }
-    
-    // uses list array to create checkboxes
-    createCheckbox = label => (
-        <Checkbox
-            label={label}
-            handleCheck={this.toggleBox}
-            key={label}
-            onChange={this.handleInputChange}
-            />
-    )
 
-    renderCheckboxes = () => (
-        items.map(this.createCheckbox)
-    )
     
     //functionality for applying filters
     applyFilters = () => {
@@ -174,12 +152,29 @@ class Home extends Component {
     }
 
     recordVisit = (website) => {
+        let title = website.website.title
         let visitCount = website.website.visits + 1 
-        API.updateWebsite(website.website._id, {visits: visitCount})
-        .then( res => console.log(res.data)
-        )
+        API.getWebsites()
+        .then(res => {
+                for (let i= 0; i < res.data.length; i++){
+                    for (let j= 0; j < res.data.length; j++) {
+                        if (res.data[i].websites[j].title === title){
+                            console.log(res.data[i].websites[j])
+                            API.updateWebsite(res.data[i].id, {visits: visitCount})
+                            .then( res => console.log(res.data)
+                            )
+                            .catch(err => console.log(err));
+                            }
+                        }
+                    }
+                })
         .catch(err => console.log(err));
-        window.location.reload();
+        // let visitCount = website.website.visits + 1 
+        // API.updateWebsite(this.state.web_id, {visits: visitCount})
+        // .then( res => console.log(res.data)
+        // )
+        // .catch(err => console.log(err));
+        // window.location.reload();
     }
 
     render() {
@@ -196,9 +191,6 @@ class Home extends Component {
                         <option value="New">New</option>
                         
                     </select>
-                    {/* <form onSubmit={this.handleFormSubmit}>
-                        {this.renderCheckboxes()}
-                    </form> */}
                     <label className="filter-item">Category:</label>
                     <select id="category" name="category" className="filter-item"
                     onChange={this.handleInputChange}>
@@ -230,9 +222,9 @@ class Home extends Component {
                         </thead>
                         <tbody>
                             {this.state.filteredSites.map(website => (
-                                <tr key={website._id}>
+                                <tr key={website.title}>
                                 <td>{website.title}</td>
-                                <td><Link to={"/websites/" + website._id}>click here</Link></td>
+                                <td><Link to={"/websites/" + website.title}>click here</Link></td>
                                 <td>{website.rating}</td>
                                 <td>{website.visits}</td>
                                 <td>{website.category}</td>

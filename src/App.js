@@ -22,7 +22,7 @@ function App() {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/newUser" component={Newuser}/>
             <Route exact path="/create" component={Create}/>
-            <Route exact path="/Websites/:_id" component={Websites}/>
+            <Route exact path="/websites/:title" component={Websites}/>
             <Route component={NoMatch}/>
           </Switch>
       </div>

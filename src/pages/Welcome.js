@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Container from "../components/Container/Index";
 import "./pages.css";
-// import API from "../utils/API";
 
 class Welcome extends Component {
 

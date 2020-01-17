@@ -6,10 +6,12 @@ router.route("/")
   .post(websitesController.create);
 
 
-router
-  .route("/:id")
+router.route("/:id")
   .get(websitesController.findById)
   .put(websitesController.update)
   .delete(websitesController.remove);
+
+  router.route("/:title")
+  .get(websitesController.findByTitle)
 
 module.exports = router;

@@ -12,23 +12,26 @@ class Websites extends Component {
   };
 
   componentDidMount() {
-    this.loadWebsite()
+    this.loadWebsites()
   }
 
-  //uses website ID in url to retrieve data for website
-  loadWebsite = () => {
-    const id = window.location.href.split("/").pop()
-    console.log(id)
-    API.getWebsite(id)
-      .then(res =>
-        this.setState({ 
-          website: res.data,
-          comments: res.data.comments
-        })
-      )
-      .catch(err => console.log(err));
-      console.log(this.state.website)
-  };
+  loadWebsites = () => {
+    const title = window.location.href.split("/").pop()
+    API.getWebsites()
+    .then(res => {
+      console.log(res.data)
+        for (let i= 0; i < res.data.length; i++){
+            for (let j= 0; j < res.data.length; j++) {
+                if (res.data[i].websites[j].title === title){
+                   this.setState({ website: res.data[i].websites[j], comments: res.data[i].websites[j].comments})
+                }
+            }
+        }
+        
+    }
+  )
+    .catch(err => console.log(err));
+};
 
   recordVisit = (website) => {
     let visitCount = website.visits + 1 
@@ -64,9 +67,9 @@ class Websites extends Component {
           <div className="webInfo l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
             <h2 className="webInfo-title">Leave a Comment</h2>
               <TextArea
-                value=""
-                onChange=""
-                name="comment"
+                // value=""
+                // onChange=""
+                // name="comment"
               />
               <FormBtn
                 onClick={this.handleFormSubmit}
