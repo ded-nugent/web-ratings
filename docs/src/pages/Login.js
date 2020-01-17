@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Input, FormBtn } from "../components/Form";
 import Container from "../components/Container/Index";
 import './pages.css';
+import Cookies from 'js-cookie';
+
 
 class Login extends Component {
 
@@ -17,14 +19,17 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+
+  
     };
 
     handleChange(event) {
         this.setState({
-            name: event.target.value,
-            
+            name: event.target.value,        
             
         });
+        
     };
 
     handlePassword(event) {
@@ -38,13 +43,22 @@ class Login extends Component {
         alert(this.state.password)
         event.preventDefault();
         
+        Cookies.set('loggedIn',this.state.name)
         
     };
-  
+    componentDidMount = () => {
+        this.getUserData()   
+    }
+    getUserData = () => {
+        alert(Cookies.get('loggedIn'))
+    }
+
+   
 
     render() {
 
         return (
+            
             <Container>
                 <div className="pure-g center">
                     <form id="loginForm" className="l-box pure-u-1 pure-u-md-1-1 pure-u-lg-1-1" onSubmit ={this.handleSubmit}>
