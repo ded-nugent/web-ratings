@@ -3,30 +3,26 @@ import { Input, FormBtn } from "../components/Form";
 import Container from "../components/Container/Index";
 import './pages.css';
 import Cookies from "js-cookie"
+import API from "../utils/API";
+
 
 class Newuser extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
             username: '',
             password: '',
             rePassword: '',
         };
 
-        this.handleEmail = this.handleEmail.bind(this);
         this.handleUsername = this.handleUsername.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleRePassword = this.handleRePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
-    handleEmail(event) {
-        this.setState({
-            email: event.target.value
-        })
-    };
+   
     handleUsername(event) {
         this.setState({
             username: event.target.value
@@ -45,24 +41,25 @@ class Newuser extends Component {
     }
 
     handleSubmit(event){
-
         if(this.state.password !== this.state.rePassword){
             alert('Failed to create account: Passwords do not match')
         }else if(this.state.password.length < 8){
             alert('Failed to create account: Password must be at least 8 characters')
         }
         else{
-
             //POST User to database
+            API.saveWebsite({
+                username: this.state.username,
+                password: this.state.password,
+                websites: []
+                
+            })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
             alert('Account created  Logged in as: ' + this.state.username)
-            Cookies.set('loggedIn', this.state.username)           
+            Cookies.set('loggedIn', this.state.username)        
         }
 
-        
-     //   alert(this.state.email)
-     //   alert(this.state.username)
-     //   alert(this.state.password)
-     //   alert(this.state.rePassword)
         event.preventDefault()
     }
 
@@ -71,8 +68,6 @@ class Newuser extends Component {
             <Container>
                 <div className="pure-g center">
                     <form id="userForm" onSubmit = {this.handleSubmit}>
-                        <h4>Email</h4>
-                        <Input type = 'text' value ={this.state.email} onChange ={this.handleEmail}/>
                         <h4>User Name</h4>
                         <Input type = 'text' value = {this.state.username} onChange = {this.handleUsername}/>
                         <h4>Password</h4>

@@ -12,8 +12,13 @@ class Create extends Component {
         URL: "",
         thumbnail: "",
         category: "",
-        summary: ""
+        summary: "",
+        user: ""
     };
+
+    getUserData = () => {
+        this.setState({user:Cookies.get('loggedIn')})
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -36,9 +41,9 @@ class Create extends Component {
                 comments: [],
                 visits: 0
             })
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err));
-        window.location.reload()
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+            window.location.reload()
         }
         
     };
@@ -95,6 +100,7 @@ class Create extends Component {
                                 <option value="Shopping">Shopping</option>
                                 <option value="Travel">Travel</option>
                                 <option value="Search">Search</option>
+                                <option value="Video">Video</option>
                             </select>
                             <h4>Website Description</h4>
                             <TextArea

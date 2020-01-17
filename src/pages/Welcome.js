@@ -6,11 +6,15 @@ import Cookies from "js-cookie"
 
 class Welcome extends Component {
 
+    state = {
+        user: ""
+    };
+
     componentDidMount = () => {
         this.getUserData()   
     }
     getUserData = () => {
-        alert(Cookies.get('loggedIn'))
+        this.setState({user:Cookies.get('loggedIn')})
     }
 
     render() {

@@ -12,7 +12,6 @@ const websiteSeed = [
 
 	{
         username : "user12345",
-        email : "email123@email.com",
 		password : "PASSWORD",
 		websites: [
 			{
@@ -132,7 +131,6 @@ const websiteSeed = [
 	},
 	{
 		username : "user123456",
-        email : "email123@email.com",
 		password : "PASSWORD",
 		websites:[
 		{
@@ -155,24 +153,6 @@ const websiteSeed = [
 					user: "Joe",
 					comment: "Wish they would update more but other then that its alright",
 					dateCreated: "1/11/2020"
-				}
-			]
-		},
-		{
-			title: "Amazon",
-			URL: "http://www.amazon.com/",
-			thumbnail: "https://mms.businesswire.com/media/20190228005194/en/3799/23/logo_white_.jpg",
-			summary:
-			"Amazon is the world’s largest online retailer and a prominent cloud services provider",
-			category: "Shopping",
-			date: new Date(Date.now()),
-			rating: 4.9,
-			visits: 814,
-			comments: [
-				{
-					user: "Billy",
-					comment: "I bought all of my cars neccesites at this website!",
-					dateCreated: "1/5/2020"
 				}
 			]
 		},
@@ -228,7 +208,6 @@ const websiteSeed = [
 	},
 	{
 		username : "user1234567",
-        email : "email123@email.com",
 		password : "PASSWORD",
 		websites:[
 			{
@@ -349,7 +328,6 @@ const websiteSeed = [
 	},
 	{
 		username : "user12345678",
-        email : "email123@email.com",
 		password : "PASSWORD",
 		websites:[
 			{
@@ -399,24 +377,6 @@ const websiteSeed = [
 			rating: 3.1,
 			visits: 238,
 			comments: []
-		},
-		{
-			title: "Reddit",
-			URL: "http://www.reddit.com/",
-			thumbnail: "https://www.slashgear.com/wp-content/uploads/2019/08/reddit_main-1280x720.jpg",
-			summary:
-			"Reddit is a network of communities based on people's interests. Find communities you're interested in, and become part of an online community!",
-			category: "Social",
-			date: new Date(Date.now()),
-			rating: 3.6,
-			visits: 606,
-			comments: [
-				{
-					user: "Troll",
-					comment: "Stop moving to reddit!",
-					dateCreated: "05/08/2018"
-				}
-			]
 		},
 		{
 			title: "Yahoo",

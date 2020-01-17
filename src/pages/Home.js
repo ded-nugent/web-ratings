@@ -15,6 +15,7 @@ class Home extends Component {
         options: "",
         category: "",
         web_id: "",
+        user: ""
     };
 
     
@@ -44,13 +45,14 @@ class Home extends Component {
         let allSites = []
         API.getWebsites()
         .then(res => {
+            console.log(res.data)
             for (let i= 0; i < res.data.length; i++){
-                for (let j= 0; j < res.data.length; j++) {
-                    if (res.data[i].websites[j] !== undefined){
-                    allSites.push(res.data[i].websites[j])
-                    }
+                    res.data[i].websites.map(website => {
+                    console.log(website)
+                    allSites.push(website)
+                    return allSites
+                    } )
                 }
-            }
             this.setState({ websites: allSites, filteredSites: allSites })
         }
         
@@ -59,7 +61,7 @@ class Home extends Component {
     };
     //retrieve username from cookies
     getUserData = () => {
-        alert(Cookies.get('loggedIn'))
+        this.setState({user:Cookies.get('loggedIn')})
     }
 
 
@@ -104,6 +106,10 @@ class Home extends Component {
         }
         if (this.state.options === "New") {
             filterArray.push("New")
+            hasCheck = true
+        }
+        if (this.state.options === "Video") {
+            filterArray.push("Video")
             hasCheck = true
         }
         if (hasCategory === true && hasCheck === false) {
@@ -211,6 +217,7 @@ class Home extends Component {
                         <option value="Shopping">Shopping</option>
                         <option value="Travel">Travel</option>
                         <option value="Search">Search</option>
+                        <option value="Video">Video</option>
                     </select>
                     <button className="pure-button pure-button-primary filter-item" onClick={this.applyFilters} type="submit">Apply</button>
                     <button className="pure-button pure-button-primary filter-item" onClick={this.removeFilter}>Reset Filters</button>

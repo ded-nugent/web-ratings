@@ -13,8 +13,7 @@ class Login extends Component {
             name: '',
             password: ''
            
-    };
-        
+    };  
 
     this.handleChange = this.handleChange.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
@@ -53,9 +52,7 @@ class Login extends Component {
     getUserData = () => {
         alert(Cookies.get('loggedIn'))
     }
-
-   
-
+    
     render() {
 
         return (
