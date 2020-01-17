@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import Container from "../components/Container/Index";
 import "./pages.css";
+import Cookies from "js-cookie"
 // import API from "../utils/API";
 
 class Welcome extends Component {
+
+    componentDidMount = () => {
+        this.getUserData()   
+    }
+    getUserData = () => {
+        alert(Cookies.get('loggedIn'))
+    }
 
     render() {
         return (

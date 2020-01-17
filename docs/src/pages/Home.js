@@ -5,6 +5,7 @@ import Container from "../components/Container/Index";
 import { Link } from "react-router-dom";
 import Checkbox from "../components/Checkbox"
 import API from "../utils/API";
+import Cookies from "js-cookie";
 // import { response } from "express";
 
 // array of filter names//
@@ -27,6 +28,7 @@ class Home extends Component {
     componentDidMount = () => {
         this.loadWebsites();
         this.selectedBoxes = new Set();
+        this.getUserData()
     }
 
     handleInputChange = event => {
@@ -52,6 +54,10 @@ class Home extends Component {
         .catch(err => console.log(err));
         
     };
+    //retrieve username from cookies
+    getUserData = () => {
+        alert(Cookies.get('loggedIn'))
+    }
 
     //for checking and unchecking boxes 
     toggleBox = label => {
