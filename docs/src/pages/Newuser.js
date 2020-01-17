@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Input, FormBtn } from "../components/Form";
+import axios from 'axios'
 import Container from "../components/Container/Index";
 import './pages.css';
 
@@ -48,13 +49,19 @@ class Newuser extends Component {
         if(this.state.password !== this.state.rePassword){
             alert('Failed to create account: Passwords do not match')
         }
-
+        else {
+            this.setState({
+            redirectTo: '/login'
+        })
+        }
         
         alert(this.state.email)
         alert(this.state.username)
         alert(this.state.password)
         alert(this.state.rePassword)
         event.preventDefault()
+        
+       
     }
 
     render() {
