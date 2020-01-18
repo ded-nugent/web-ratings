@@ -58,7 +58,7 @@ class Newuser extends Component {
             })
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
-            alert('Account created  Logged in as: ' + this.state.password)
+            alert('Account created  Logged in as: ' + this.state.username)
             Cookies.set('loggedIn', this.state.username)   
         }
 
@@ -73,9 +73,9 @@ class Newuser extends Component {
                         <h4>User Name</h4>
                         <Input type = 'text' value = {this.state.username} onChange = {this.handleUsername}/>
                         <h4>Password</h4>
-                        <Input type = 'text' value = {this.state.password} onChange = {this.handlePassword}/>
+                        <Input type = 'password' value = {this.state.password} onChange = {this.handlePassword}/>
                         <h4>Retype Password</h4>
-                        <Input type = 'text' value = {this.state.rePassword} onChange = {this.handleRePassword}/>
+                        <Input type = 'password' value = {this.state.rePassword} onChange = {this.handleRePassword}/>
                         <FormBtn>Create</FormBtn>
                     </form>
                 </div>

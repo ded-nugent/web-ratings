@@ -21,9 +21,9 @@ db.on("error", function(error) {
 db.once("open", () => {
   console.log("Database connected")
 })
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/websiteDB"
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/websiteDB");
+mongoose.connect(MONGODB_URI);
   
 
 app.listen(PORT, function() {

@@ -4,6 +4,7 @@ import { FormBtn, TextArea } from "../components/Form";
 import Container from "../components/Container/Index";
 import Cookies from "js-cookie"
 
+
 class Websites extends Component {
 
   state = {
@@ -53,18 +54,38 @@ handleInputChange = event => {
       });
   };
 
-  handleFormSubmit = () => {
-    API.updateWebsite(this.state.webData._id, {})
+  findFilter = () => {
+    let filter
+    for (let i = 0; i < this.state.webData.websites; i++) {
+      console.log(this.state.webData.websites)
+      if (this.state.webData.websites[i].title  === this.website.title) {
+          filter = this.state.webData.websites[i]
+          console.log(filter)
+      }
+    }
   }
 
-  recordVisit = (website) => {
-    let visitCount = website.visits + 1 
-    API.updateWebsite(website._id, {visits: visitCount})
-    .then( res => console.log(res.data)
-    )
-    .catch(err => console.log(err));
-    window.location.reload();
-}
+  handleFormSubmit = () => {
+    API.findOneAndUpdate(
+      {websites: this.state.website}, 
+      {$set: {comments: this.state.comments}})
+      .then( res => console.log(res.data)
+      )
+      .catch(err => console.log(err));
+      window.location.reload();
+    };
+  
+
+//   recordVisit = (website) => {
+//     let visitCount = website.visits + 1 
+//     API.findOneAndUpdate(
+//       {websites: this.state.website},
+//       {visits: visitCount})
+//     .then( res => console.log(res.data)
+//     )
+//     .catch(err => console.log(err));
+//     window.location.reload();
+// }
 
   render() {
     return (
@@ -91,7 +112,7 @@ handleInputChange = event => {
           <div className="webInfo l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
             <h2 className="webInfo-title">Leave a Comment</h2>
               <TextArea
-                value={this.state.website}
+                value=""
                 onChange={this.handleInputChange}
                 name="newComment"
               />

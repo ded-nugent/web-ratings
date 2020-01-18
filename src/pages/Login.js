@@ -41,11 +41,11 @@ class Login extends Component {
         //check that this.state.password === password in database
         event.preventDefault();
         let userlogged
-        const result = bcrypt.compareSync(this.state.password, hash)
+        // const result = bcrypt.compareSync(this.state.password, hash)
         API.getWebsites()
         .then(res => {
             res.data.map(user => {
-                if (user.username === this.state.username && result === true ) {
+                if (user.username === this.state.username && user.password === this.state.password) {
                     console.log("yes")
                     userlogged = Cookies.set('loggedIn', user.username)
                 }
@@ -71,7 +71,7 @@ class Login extends Component {
                         <h4>User Name</h4>
                         <Input type ='text' value={this.state.name} onChange={this.handleChange}></Input>
                         <h4>Password</h4>
-                        <Input type = 'text' value={this.state.password} onChange ={this.handlePassword}></Input>
+                        <Input type ='password' value={this.state.password} onChange ={this.handlePassword}></Input>
                         <FormBtn>Submit</FormBtn>
                     </form>
                 <div className="pure-g center">
