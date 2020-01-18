@@ -19,7 +19,7 @@ export default {
   },
 
   updateWebsite: function(id, websiteData) {
-    return axios.put("/api/websites/" + id, websiteData.website);
+    return axios.put("/api/websites/" + id, websiteData);
   },
 
   findWebsite: function(title) {

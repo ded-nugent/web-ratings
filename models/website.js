@@ -17,17 +17,17 @@ const websiteSchema = new Schema({
     },
     websites:[
         {
-        title: { type: String, required: true },
+        title: String,
         summary: String,
         thumbnail: String,
-        URL: { type: String, required: true },
-        category: { type: String, required: true },
+        URL: String,
+        category: String,
         date: { type: Date, default: Date.now },
         rating: Number,
         visits:Number,
         comments: [ 
             {
-                user: { type: String, required: true },
+                user: String,
                 comment: String,
                 dateCreated: { type: Date, default: Date.now }
             }

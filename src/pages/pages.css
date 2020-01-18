@@ -1,5 +1,6 @@
 h4 {
     font-family: 'Lobster', cursive;
+    text-decoration: underline;
 }
 
 .center {
@@ -45,6 +46,23 @@ h4 {
     margin: 5px;
     width: 355px;
     height: 35px;
+}
+
+#postedSites-title {
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    text-decoration: underline;
+}
+
+#postedSites-p {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.postedSites-item {
+    margin-left: 15px;
+    font-family: 'Poppins', sans-serif;
+
 }
 
 #siteView {

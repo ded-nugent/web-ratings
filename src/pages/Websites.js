@@ -2,28 +2,41 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { FormBtn, TextArea } from "../components/Form";
 import Container from "../components/Container/Index";
-
+import Cookies from "js-cookie"
 
 class Websites extends Component {
 
   state = {
     website: "",
-    comments: []
+    comments: [],
+    user: "",
+    newComment: "",
+    webData: "",
   };
 
   componentDidMount() {
     this.loadWebsites()
+    this.getUserData()
   }
+  
+  getUserData = () => {
+      this.setState({user:Cookies.get('loggedIn')})
+  }
+
+
 
   loadWebsites = () => {
     const title = window.location.href.split("/").pop()
     API.getWebsites()
     .then(res => {
-      console.log(res.data)
         for (let i= 0; i < res.data.length; i++){
             for (let j= 0; j < res.data.length; j++) {
                 if (res.data[i].websites[j].title === title){
-                   this.setState({ website: res.data[i].websites[j], comments: res.data[i].websites[j].comments})
+                   this.setState({ 
+                     website: res.data[i].websites[j], 
+                     comments: res.data[i].websites[j].comments,
+                     webData: res.data[i]
+                    })
                 }
             }
         }
@@ -32,6 +45,17 @@ class Websites extends Component {
   )
     .catch(err => console.log(err));
 };
+
+handleInputChange = event => {
+  const { name, value } = event.target;
+      this.setState({
+      [name]: value
+      });
+  };
+
+  handleFormSubmit = () => {
+    API.updateWebsite(this.state.webData._id, {})
+  }
 
   recordVisit = (website) => {
     let visitCount = website.visits + 1 
@@ -67,9 +91,9 @@ class Websites extends Component {
           <div className="webInfo l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
             <h2 className="webInfo-title">Leave a Comment</h2>
               <TextArea
-                // value=""
-                // onChange=""
-                // name="comment"
+                value={this.state.website}
+                onChange={this.handleInputChange}
+                name="newComment"
               />
               <FormBtn
                 onClick={this.handleFormSubmit}

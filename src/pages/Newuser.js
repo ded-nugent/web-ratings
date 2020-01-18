@@ -4,6 +4,7 @@ import Container from "../components/Container/Index";
 import './pages.css';
 import Cookies from "js-cookie"
 import API from "../utils/API";
+import { Base64 } from 'js-base64';
 
 
 class Newuser extends Component {
@@ -14,6 +15,7 @@ class Newuser extends Component {
             username: '',
             password: '',
             rePassword: '',
+            encrypted: '',
         };
 
         this.handleUsername = this.handleUsername.bind(this);
@@ -22,6 +24,16 @@ class Newuser extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
+
+    encrypt_password = () => {
+        let temp = Base64.encode(this.state.password);
+        this.setState({ encrypted: temp });
+        console.log(temp)
+      }
+    decrypt_password = () => {
+        let temp = Base64.decode(this.state.encrypted);
+        this.setState({ encrypted: temp });
+      }
    
     handleUsername(event) {
         this.setState({
@@ -48,16 +60,15 @@ class Newuser extends Component {
         }
         else{
             //POST User to database
+            this.encrypt_password()
             API.saveWebsite({
                 username: this.state.username,
-                password: this.state.password,
-                websites: []
-                
+                password: this.state.encrypted,
             })
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
-            alert('Account created  Logged in as: ' + this.state.username)
-            Cookies.set('loggedIn', this.state.username)        
+            alert('Account created  Logged in as: ' + this.state.encrypted)
+            Cookies.set('loggedIn', this.state.username)   
         }
 
         event.preventDefault()

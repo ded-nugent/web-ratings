@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Input, FormBtn, TextArea } from "../components/Form";
 import API from "../utils/API";
 import './pages.css';
@@ -13,12 +14,41 @@ class Create extends Component {
         thumbnail: "",
         category: "",
         summary: "",
-        user: ""
+        user: "",
+        password: "",
+        userObject: "",
+        useWebsites: []
     };
+
+    componentDidMount = () => {
+        this.getUserData()
+        this.findUserData()
+      }
 
     getUserData = () => {
         this.setState({user:Cookies.get('loggedIn')})
     }
+
+    findUserData = () => {
+        let userLogged
+        let userPass
+        let userSites = []
+        API.getWebsites()
+        .then(res => {
+            res.data.map(user => {
+                if (user.username === this.state.user) {
+                    userLogged = user
+                    userSites = user.websites
+                    userPass = user.password
+                    this.setState({userObject: userLogged, websites: userSites, password: userPass})
+                }
+                return {userLogged, userSites, userPass}
+            })
+        }        
+        )
+        .catch(err => console.log(err));
+    }
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -31,30 +61,27 @@ class Create extends Component {
         event.preventDefault();
         if (this.state.URL && this.state.thumbnail) {
             API.saveWebsite({
-                title: this.state.title,
-                URL: this.state.URL,
-                thumbnail: this.state.thumbnail,
-                category: this.state.category,
-                summary: this.state.summary,
-                rating: 0, 
-                date: new Date(Date.now()),
-                comments: [],
-                visits: 0
+                username: this.state.user,
+                password: this.state.password,
+                websites: [{
+                    title: this.state.title,
+                    URL: this.state.URL,
+                    thumbnail: this.state.thumbnail,
+                    summary: this.state.summary,
+                    category: this.state.category,
+                    date: new Date(Date.now()),
+                    rating: 0, 
+                    visits: 0,
+                    comments: []
+                }]
             })
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
-            window.location.reload()
+            // window.location.reload()
         }
         
     };
-
-    componentDidMount = () => {
-        this.getUserData()   
-    }
-    getUserData = () => {
-        alert(Cookies.get('loggedIn'))
-    }
-    
+      
     clearForm = () => {
         window.location.reload()
     }
@@ -118,7 +145,19 @@ class Create extends Component {
                     </div>
                     <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3 userSites">
                         <div id="siteView">
-                            <h3>Websites You have Posted</h3>
+                            <h2 id="postedSites-title">Websites You have Posted:</h2>
+                            <p id="postedSites-p">click website to go to detail page</p>
+                            
+                                {this.state.websites.map(website => (
+                                    <h3 
+                                    key={website.title} 
+                                    className="postedSites-item">
+                                        <Link to={"/websites/" + website.title}>
+                                            {website.title}
+                                        </Link> - Rating: {website.rating}
+                                    </h3>
+                                ))}
+                            
                         </div>
                     </div>
                 </div>
