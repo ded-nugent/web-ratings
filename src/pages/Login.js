@@ -4,8 +4,8 @@ import Container from "../components/Container/Index";
 import './pages.css';
 import Cookies from 'js-cookie';
 import API from "../utils/API";
-import bcrypt from 'bcryptjs';
-import hash from 'bcryptjs'
+// import bcrypt from 'bcryptjs';
+// import hash from 'bcryptjs'
 
 
 class Login extends Component {
