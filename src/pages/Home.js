@@ -4,9 +4,7 @@ import Filter from "../components/Filter/Index"
 import Container from "../components/Container/Index";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
-import Cookies from "js-cookie";
-// import { response } from "express";
-
+import Cookies from "js-cookie"
 
 class Home extends Component {
     state = {
