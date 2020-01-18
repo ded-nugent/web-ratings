@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "./home.css"
 export default () => (
-  <div className="App-intro">
-    <h3>Standard Examples:</h3>
+  <div className="splash-container">
+    <h3 class="postedSites-title">Standard Examples:</h3>
     <ul>
       <li>
         <Link to="/bar-chart">Bar Chart</Link>
@@ -15,7 +16,7 @@ export default () => (
       </li>
     </ul>
 
-    <h3>Animated Examples:</h3>
+    <h3 class="postedSites-title">Animated Examples:</h3>
     <ul>
       <li>
         <Link to="/bar-chart/animated">Bar Chart</Link>

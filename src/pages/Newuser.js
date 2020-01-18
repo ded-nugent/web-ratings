@@ -4,7 +4,7 @@ import Container from "../components/Container/Index";
 import './pages.css';
 import Cookies from "js-cookie"
 import API from "../utils/API";
-import bcrypt from 'bcryptjs';
+var bcrypt = require('bcryptjs')
 
 
 

@@ -1,0 +1,17 @@
+.splash-container {
+    background: #ffffcc;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px; 
+    overflow: hidden;
+    width: 400px;
+    height: auto;
+    border: 3px solid black;
+    content: center;
+}
+
+.postedSites-title {
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    text-decoration: underline;
+}
