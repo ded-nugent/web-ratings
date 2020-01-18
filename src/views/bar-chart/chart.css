@@ -1,0 +1,20 @@
+.bar {
+	fill: steelblue;
+  }
+  
+  .bar:hover {
+	fill: brown;
+  }
+  
+  .axis--x path {
+	display: none;
+	font-size: 20px;
+  }
+
+  #chartTitle {
+	font-size: 24px;
+  }
+
+  .websites {
+	font-size: 20px;
+  }

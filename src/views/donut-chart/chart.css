@@ -1,0 +1,16 @@
+.arc text {
+  font: 12px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+#pieTitle{
+  font-size: 20px;
+}
+#pieTitle2{
+  font-size: 14px;
+  animation: alternate;
+}

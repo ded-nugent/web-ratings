@@ -56,6 +56,8 @@ class Nav extends Component {
             <li className="pure-menu-item"><a href="/home" className="pure-menu-link nav-item">Home</a></li>
             {this.addWebsite()}
             {this.loginLink()}
+            <li className="pure-menu-item"><a href="/homeview">
+          <img id="logo" src="https://png2.cleanpng.com/sh/ba118b0d77fd4e6695adfac1e8e32edd/L0KzQYq3U8E1N5ttf5H0aYP2gLBuTfRifJIyjtt8dXHvecvolPlwdl58geZxLXS2Pbv6TfpifpJ4eARycISwRbSBgck6aWlnfqpuMkexRYm9Usc0PGU2Tac7NUi6QYi9V8g1Pl91htk=/kisspng-data-visualization-with-d3-js-javascript-5c8a99a8bf8e27.5862734415525871767846.png" alt="d3"></img></a></li>
           </ul>
         </div>
       </div>
