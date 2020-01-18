@@ -52,17 +52,7 @@ class Newuser extends Component {
         }else if(this.state.password.length < 8){
             alert('Failed to create account: Password must be at least 8 characters')
         }
-        else{
-
-            //POST User to database
-            alert('Account created  Logged in as: ' + this.state.username)
-            Cookies.set('loggedIn', this.state.username)           
-        }
-        else {
-            this.setState({
-            redirectTo: '/login'
-        })
-        }
+       
         
      //   alert(this.state.email)
      //   alert(this.state.username)
