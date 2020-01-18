@@ -46,10 +46,14 @@
       "last 1 safari version"
     ]
   },
-
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "server.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "fibers": "^4.0.2",
+    "node-sass": "^4.13.1",
+    "sass": "^1.25.0",
+    "typescript": "^3.7.5"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
