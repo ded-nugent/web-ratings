@@ -4,7 +4,8 @@ import Container from "../components/Container/Index";
 import './pages.css';
 import Cookies from "js-cookie"
 import API from "../utils/API";
-import { Base64 } from 'js-base64';
+import bcrypt from 'bcryptjs';
+
 
 
 class Newuser extends Component {
@@ -15,7 +16,6 @@ class Newuser extends Component {
             username: '',
             password: '',
             rePassword: '',
-            encrypted: '',
         };
 
         this.handleUsername = this.handleUsername.bind(this);
@@ -25,16 +25,6 @@ class Newuser extends Component {
 
     }
 
-    encrypt_password = () => {
-        let temp = Base64.encode(this.state.password);
-        this.setState({ encrypted: temp });
-        console.log(temp)
-      }
-    decrypt_password = () => {
-        let temp = Base64.decode(this.state.encrypted);
-        this.setState({ encrypted: temp });
-      }
-   
     handleUsername(event) {
         this.setState({
             username: event.target.value
@@ -60,14 +50,15 @@ class Newuser extends Component {
         }
         else{
             //POST User to database
-            this.encrypt_password()
+            let hash = bcrypt.hashSync(this.state.password, bcrypt.genSaltSync(10));
+            console.log(hash)
             API.saveWebsite({
                 username: this.state.username,
-                password: this.state.encrypted,
+                password: hash,
             })
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
-            alert('Account created  Logged in as: ' + this.state.encrypted)
+            alert('Account created  Logged in as: ' + this.state.password)
             Cookies.set('loggedIn', this.state.username)   
         }
 

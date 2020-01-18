@@ -20,7 +20,7 @@ class Nav extends Component {
     if (this.state.user !== undefined) {
     return (
     <li className="pure-menu-item">
-      <a href="/welcome" 
+      <a href="/" 
       className="pure-menu-link nav-item"
       onClick={this.logout}
       >

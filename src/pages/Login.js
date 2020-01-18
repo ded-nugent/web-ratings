@@ -4,7 +4,8 @@ import Container from "../components/Container/Index";
 import './pages.css';
 import Cookies from 'js-cookie';
 import API from "../utils/API";
-import { Base64 } from 'js-base64';
+import bcrypt from 'bcryptjs';
+import hash from 'bcryptjs'
 
 
 class Login extends Component {
@@ -14,7 +15,6 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            encrypted: '',
     };  
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,16 +22,6 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     };
-
-    encrypt_password = () => {
-        let temp = Base64.encode(this.state.encrypted);
-        this.setState({ password: temp });
-      }
-    decrypt_password = () => {
-        let temp = Base64.decode(this.state.password);
-        this.setState({ password: temp });
-      }
-
     handleChange(event) {
         this.setState({
             username: event.target.value,        
@@ -51,11 +41,11 @@ class Login extends Component {
         //check that this.state.password === password in database
         event.preventDefault();
         let userlogged
-        this.decrypt_password()
+        const result = bcrypt.compareSync(this.state.password, hash)
         API.getWebsites()
         .then(res => {
             res.data.map(user => {
-                if (user.username === this.state.username && user.password === this.state.password) {
+                if (user.username === this.state.username && result === true ) {
                     console.log("yes")
                     userlogged = Cookies.set('loggedIn', user.username)
                 }
