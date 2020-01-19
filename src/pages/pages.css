@@ -176,6 +176,10 @@ a.pure-button-primary {
         margin-right: 7px;
     }
 
+#logo{
+    width: 2cm;
+    height: 2cm;
+}
 /* styling for home table */
 
 table {
@@ -267,6 +271,16 @@ a {
 }
 
 .webImage {
-    width: 250px;
+    width: 200px;
     height: auto
 }
+
+/* .barchart {
+    z-index:-1;
+    position:relative;
+}
+
+svg {
+    z-index:-1;
+    position:relative;
+} */
